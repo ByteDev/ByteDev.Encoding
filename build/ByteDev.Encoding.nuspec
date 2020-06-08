@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>ByteDev.Encoding</id>
+    <title>ByteDev.Encoding</title>
+    <version>0.0.1</version>
+    <authors>Paul Stanley</authors>
+    <owners>Paul Stanley</owners>
+    <copyright>Copyright 2020</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library of encoding related functionality (Base64, Hex etc.).</description>
+    <tags>encoding encode decode encoder base64 hex hexadecimal text string</tags>
+    <iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.Encoding/master/images/icon.png</iconUrl>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\ByteDev.Encoding\bin\Release\netstandard2.0\ByteDev.Encoding.dll" target="lib\netstandard2.0" />
+    <file src="..\src\ByteDev.Encoding\bin\Release\netstandard2.0\ByteDev.Encoding.xml" target="lib\netstandard2.0" />
+  </files>
+</package>
