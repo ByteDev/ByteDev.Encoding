@@ -2,6 +2,9 @@
 
 namespace ByteDev.Encoding.Base64
 {
+    /// <summary>
+    /// Represents the base64 character set.
+    /// </summary>
     public static class Base64CharacterSet
     {
         /// <summary>

@@ -2,6 +2,9 @@
 
 namespace ByteDev.Encoding.Hex
 {
+    /// <summary>
+    /// Represents the hexadecimal character set.
+    /// </summary>
     public static class HexCharacterSet
     {
         /// <summary>

@@ -36,6 +36,14 @@ The main library classes include:
 - Serializer
 - EncoderFactory
 
+String extension methods:
+- IsBase64
+- IsHex
+
+Char extension methods:
+- IsBasae64
+- IsHex
+
 ### Base64Encoder
 
 `Base64Encoder` provides a way to encode to hexadecimal strings and decode back again.

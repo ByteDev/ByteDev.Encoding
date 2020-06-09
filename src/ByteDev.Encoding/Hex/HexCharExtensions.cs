@@ -1,5 +1,8 @@
 ﻿namespace ByteDev.Encoding.Hex
 {
+    /// <summary>
+    /// Extension methods for <see cref="T:System.Char" />.
+    /// </summary>
     public static class HexCharExtensions
     {
         /// <summary>
