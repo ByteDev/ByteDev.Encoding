@@ -5,7 +5,7 @@ namespace ByteDev.Encoding.Hex
     public static class HexCharacterSet
     {
         /// <summary>
-        /// Possible valid characters in a hexadecimal encoded string.
+        /// Valid hexadecimal characters.
         /// </summary>
         public static readonly HashSet<char> HexChars = new HashSet<char>
         {
@@ -15,7 +15,7 @@ namespace ByteDev.Encoding.Hex
         };
 
         /// <summary>
-        /// Possible valid characters in a hexadecimal encoded string.
+        /// Valid hexadecimal characters.
         /// </summary>
         public static readonly string Hex = "0123456789ABCDEFabcdef";
     }

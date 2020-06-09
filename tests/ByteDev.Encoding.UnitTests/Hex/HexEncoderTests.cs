@@ -2,7 +2,7 @@
 using ByteDev.Encoding.Hex;
 using NUnit.Framework;
 
-namespace ByteDev.Encoding.UnitTests.Base64
+namespace ByteDev.Encoding.UnitTests.Hex
 {
     [TestFixture]
     public class HexEncoderTests
