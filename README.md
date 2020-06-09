@@ -34,8 +34,11 @@ The main library classes include:
 - Base64Encoder
 - HexEncoder
 - Serializer
+- EncoderFactory
 
 ### Base64Encoder
+
+`Base64Encoder` provides a way to encode to hexadecimal strings and decode back again.
 
 ```csharp
 IEncoder encoder = new Base64Encoder();
@@ -51,6 +54,8 @@ string text = encoder.Decode(base64);
 
 ### HexEncoder
 
+`HexEncoder` provides a way to encode to hexadecimal strings and decode back again.
+
 ```csharp
 IEncoder encoder = new HexEncoder('='); // optional delimiter arg
 
@@ -64,6 +69,8 @@ string text = encoder.Decode(hex);
 ```
 
 ### Serializer
+
+The `Serializer` class provides a way to serialize/deserialize objects based on the provided `IEncoder` implementation (Base64 or Hex).
 
 ```csharp
 // Entity to serialize
@@ -93,4 +100,14 @@ string base64 = serializer.Serialize(person);
 ```csharp
 // Deserialize
 Person person = serializer.Deserialize<Person>(base64);
+```
+
+### EncoderFactory
+
+The `EncoderFactory` provides a convenient to create a type of encoder based on the `EncodingType`.
+
+```csharp
+IEncoderFactory factory = new EncoderFactory();
+
+IEncoder encoder = factory.Create(EncodingType.Base64);
 ```

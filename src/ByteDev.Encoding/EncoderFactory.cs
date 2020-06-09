@@ -6,7 +6,7 @@ namespace ByteDev.Encoding
 {
     public class EncoderFactory : IEncoderFactory
     {
-        public IEncoder CreateFor(EncodingType encodingType)
+        public IEncoder Create(EncodingType encodingType)
         {
             switch (encodingType)
             {

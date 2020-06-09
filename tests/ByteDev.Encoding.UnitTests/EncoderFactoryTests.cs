@@ -19,7 +19,7 @@ namespace ByteDev.Encoding.UnitTests
         [Test]
         public void WhenEncodingTypeIsBase64_ThenReturnEncoder()
         {
-            var result = _sut.CreateFor(EncodingType.Base64);
+            var result = _sut.Create(EncodingType.Base64);
 
             Assert.That(result, Is.TypeOf<Base64Encoder>());
         }
@@ -27,7 +27,7 @@ namespace ByteDev.Encoding.UnitTests
         [Test]
         public void WhenEncodingTypeIsHex_ThenReturnEncoder()
         {
-            var result = _sut.CreateFor(EncodingType.Hex);
+            var result = _sut.Create(EncodingType.Hex);
 
             Assert.That(result, Is.TypeOf<HexEncoder>());
         }
@@ -35,7 +35,7 @@ namespace ByteDev.Encoding.UnitTests
         [Test]
         public void WhenEncodingTypeIsUnhandled_ThenThrowException()
         {
-            Assert.Throws<InvalidOperationException>(() => _sut.CreateFor((EncodingType)999));
+            Assert.Throws<InvalidOperationException>(() => _sut.Create((EncodingType)999));
         }
     }
 }

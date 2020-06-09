@@ -2,6 +2,6 @@
 {
     public interface IEncoderFactory
     {
-        IEncoder CreateFor(EncodingType encodingType);
+        IEncoder Create(EncodingType encodingType);
     }
 }
