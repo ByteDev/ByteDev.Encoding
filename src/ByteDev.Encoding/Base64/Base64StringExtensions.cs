@@ -17,7 +17,7 @@ namespace ByteDev.Encoding.Base64
             if (string.IsNullOrEmpty(source))
                 return false;
 
-            if (source.Length.IsMultipleOf(4))
+            if (!source.Length.IsMultipleOf(4))
                 return false;
 
             // Check every char is [A-Za-z0-9+/] except for end padding which can be 0-2 '=' characters

@@ -4,7 +4,7 @@
     {
         public static bool IsMultipleOf(this int source, int value)
         {
-            return source % value != 0;
+            return source % value == 0;
         }
     }
 }

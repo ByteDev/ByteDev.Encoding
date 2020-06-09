@@ -1,6 +1,6 @@
-﻿using System;
-using ByteDev.Encoding.Base64;
+﻿using ByteDev.Encoding.Base64;
 using NUnit.Framework;
+using System;
 
 namespace ByteDev.Encoding.UnitTests.Base64
 {
@@ -28,7 +28,7 @@ namespace ByteDev.Encoding.UnitTests.Base64
         public class Encode
         {
             [Test]
-            public void WhenArgIsNull_ThenThrowException()
+            public void WhenStringIsNull_ThenThrowException()
             {
                 Assert.Throws<ArgumentNullException>(() => new Base64Encoder().Encode((string) null));
             }
@@ -36,7 +36,7 @@ namespace ByteDev.Encoding.UnitTests.Base64
             [TestCase("", "")]
             [TestCase("John Smith", "Sm9obiBTbWl0aA==")]
             [TestCase("John Smith12345", "Sm9obiBTbWl0aDEyMzQ1")]
-            public void WhenUtf8StringIsNotNull_ThenReturnBased64(string text, string expected)
+            public void WhenUtf8StringIsNotNull_ThenReturnEncoded(string text, string expected)
             {
                 var result = new Base64Encoder().Encode(text);
 
@@ -48,7 +48,7 @@ namespace ByteDev.Encoding.UnitTests.Base64
         public class Decode
         {
             [Test]
-            public void WhenArgIsNull_ThenThrowException()
+            public void WhenStringIsNull_ThenThrowException()
             {
                 Assert.Throws<ArgumentNullException>(() => new Base64Encoder().Decode(null));
             }

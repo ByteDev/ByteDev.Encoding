@@ -12,7 +12,7 @@
         /// <returns>True if char is a valid base64 character; otherwise returns false.</returns>
         public static bool IsBase64(this char source)
         {
-            return Base64.Base64CharacterSet.Base64Chars.Contains(source);
+            return Base64CharacterSet.Base64Chars.Contains(source);
         }
     }
 }

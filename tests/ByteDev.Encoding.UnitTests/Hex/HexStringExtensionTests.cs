@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace ByteDev.Encoding.UnitTests.Hex
 {
     [TestFixture]
-    public class HexExtensionTests
+    public class HexStringExtensionTests
     {
         [TestFixture]
         public class IsHex
