@@ -70,7 +70,12 @@ namespace ByteDev.Encoding.Hex
             var hex = BitConverter.ToString(bytes);
 
             if (_delimiter.HasValue)
+            {
+                if (_delimiter.Value == '-')
+                    return hex;
+
                 return hex.Replace('-', _delimiter.Value);
+            }
 
             return hex.Replace("-", string.Empty);    
         }

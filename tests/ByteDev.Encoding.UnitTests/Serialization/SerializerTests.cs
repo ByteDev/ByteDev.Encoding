@@ -1,5 +1,6 @@
 ﻿using System;
 using ByteDev.Encoding.Base64;
+using ByteDev.Encoding.Hex;
 using ByteDev.Encoding.Serialization;
 using NUnit.Framework;
 
@@ -8,103 +9,81 @@ namespace ByteDev.Encoding.UnitTests.Serialization
     [TestFixture]
     public class SerializerTests
     {
-        private static Serializer CreateSut()
-        {
-            return new Serializer(new Base64Encoder());
-        }
+        private Serializer _sut;
+        private Person _person;
 
-        private Product CreateProduct()
+        [SetUp]
+        public void SetUp()
         {
-            return new Product { Name = "John Smith" };
-        }
+            _person = new Person { Name = "John Smith" };
 
-        private static string SerializeToBase64<T>(T obj)
-        {
-            return CreateSut().Serialize(obj);
+            _sut = new Serializer(new Base64Encoder());
         }
-
+        
         [TestFixture]
         public class Serialize : SerializerTests
         {
-            private Serializer _sut;
-
-            [SetUp]
-            public void SetUp()
+            [Test]
+            public void WhenIsNull_ThenThrowException()
             {
-                _sut = CreateSut();
+                Assert.Throws<ArgumentNullException>(() => _sut.Serialize(null));
             }
 
             [Test]
-            public void WhenProductIsNull_ThenThrowException()
+            public void WhenUsingBase64Encoder_ThenReturnBase64()
             {
-                Assert.Throws<ArgumentNullException>(() => Act(null));
-            }
-
-            [Test]
-            public void WhenIsProduct_ThenReturnBase64String()
-            {
-                var result = Act(CreateProduct());
+                var result = _sut.Serialize(_person);
 
                 Assert.That(result.IsBase64(), Is.True);
             }
 
-            private string Act(object obj)
+            [Test]
+            public void WhenUsingHexEncoder_ThenReturnHex()
             {
-                return _sut.Serialize(obj);
+                var sut = new Serializer(new HexEncoder('-'));
+
+                var result = sut.Serialize(_person);
+
+                Assert.That(result.IsHex('-'), Is.True);
             }
         }
 
         [TestFixture]
         public class Deserialize : SerializerTests
         {
-            private Serializer _sut;
-
-            [SetUp]
-            public void SetUp()
-            {
-                _sut = CreateSut();
-            }
-
             [Test]
             public void WhenIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => Act<Product>(null));
+                Assert.Throws<ArgumentException>(() => _sut.Deserialize<Person>(null));
             }
 
             [Test]
             public void WhenIsEmpty_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => Act<Product>(string.Empty));
+                Assert.Throws<ArgumentException>(() => _sut.Deserialize<Person>(string.Empty));
             }
 
             [Test]
-            public void WhenProductIsSerialized_AndDeserializedAsProduct_ThenDeserialize()
+            public void WhenIsSerialized_ThenReturnObject()
             {
-                var product = CreateProduct();
-                var base64 = SerializeToBase64(product);
+                var base64 = _sut.Serialize(_person);
                 
-                var result = Act<Product>(base64);
+                var result = _sut.Deserialize<Person>(base64);
 
-                Assert.That(result.Name, Is.EqualTo(product.Name));
+                Assert.That(result.Name, Is.EqualTo(_person.Name));
             }
 
             [Test]
-            public void WhenProductIsSerialized_AndDeserializedAsCustomer_ThenThrowException()
+            public void WhenIsSerialized_AndDeserializedAsDifferentType_ThenThrowException()
             {
-                var product = CreateProduct();
-                var base64 = SerializeToBase64(product);
+                var base64 = _sut.Serialize(_person);
 
-                Assert.Throws<InvalidCastException>(() => Act<Customer>(base64));
-            }
-
-            private T Act<T>(string input)
-            {
-                return _sut.Deserialize<T>(input);
+                Assert.Throws<InvalidCastException>(() => _sut.Deserialize<Customer>(base64));
             }
         }
 
         [Serializable]
-        public class Product
+        public class Person
         {
             public string Name { get; set; }
         }

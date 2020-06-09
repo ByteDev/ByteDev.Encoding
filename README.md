@@ -4,7 +4,7 @@
 
 # ByteDev.Encoding
 
-Library of encoding related functionality (Base64, Hex etc.).
+Library of encoding/decoding related functionality for Base64 and Hexadecimal.
 
 ## Installation
 
@@ -30,3 +30,67 @@ The repo can be cloned from git bash:
 
 ## Usage
 
+The main library classes include:
+- Base64Encoder
+- HexEncoder
+- Serializer
+
+### Base64Encoder
+
+```csharp
+IEncoder encoder = new Base64Encoder();
+
+string base64 = encoder.Encode("John");
+
+// base64 == "Sm9obg=="
+
+string text = encoder.Decode(base64);
+
+// text == "John"
+```
+
+### HexEncoder
+
+```csharp
+IEncoder encoder = new HexEncoder('='); // optional delimiter arg
+
+string hex = encoder.Encode("John");
+
+// hex == "4A=6F=68=6E"
+
+string text = encoder.Decode(hex);
+
+// text == "John"
+```
+
+### Serializer
+
+```csharp
+// Entity to serialize
+[Serializable]
+public class Person
+{
+    public string Name { get; set; }
+}
+
+// ...
+
+var person = new Person { Name = "John Smith" }
+```
+
+```csharp
+// Setup serializer
+IEncoder encoder = new Base64Encoder();
+
+ISerializer serializer = new Serializer(encoder);
+```
+
+```csharp
+// Serialize
+string base64 = serializer.Serialize(person);
+```
+
+```csharp
+// Deserialize
+Person person = serializer.Deserialize<Person>(base64);
+```

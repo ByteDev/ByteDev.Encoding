@@ -59,14 +59,15 @@ namespace ByteDev.Encoding.UnitTests.Hex
                 Assert.That(result, Is.EqualTo(expected));
             }
 
-            [Test]
-            public void WhenDelimiterSet_ThenReturnEncodedWithDelimiter()
+            [TestCase('=', "4A=6F=68=6E")]
+            [TestCase('-', "4A-6F-68-6E")]
+            public void WhenDelimiterSet_ThenReturnEncodedWithDelimiter(char delimiter, string expected)
             {
-                var sut = new HexEncoder('=');
+                var sut = new HexEncoder(delimiter);
 
                 var result = sut.Encode("John");
 
-                Assert.That(result, Is.EqualTo("4A=6F=68=6E"));
+                Assert.That(result, Is.EqualTo(expected));
             }
         }
 

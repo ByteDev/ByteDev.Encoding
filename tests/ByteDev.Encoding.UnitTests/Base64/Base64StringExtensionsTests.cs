@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace ByteDev.Encoding.UnitTests.Base64
 {
     [TestFixture]
-    public class Base64StringExtensionTests
+    public class Base64StringExtensionsTests
     {
         [TestFixture]
         public class IsBase64

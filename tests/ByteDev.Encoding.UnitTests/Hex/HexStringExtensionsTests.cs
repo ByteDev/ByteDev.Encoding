@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace ByteDev.Encoding.UnitTests.Hex
 {
     [TestFixture]
-    public class HexStringExtensionTests
+    public class HexStringExtensionsTests
     {
         [TestFixture]
         public class IsHex
@@ -29,6 +29,22 @@ namespace ByteDev.Encoding.UnitTests.Hex
             public void WhenIsNotHex_ThenReturnFalse(string sut)
             {
                 var result = sut.IsHex();
+
+                Assert.That(result, Is.False);
+            }
+
+            [Test]
+            public void WhenDelimiterProvider_AndHasDelimiter_ThenReturnTrue()
+            {
+                var result = "4A=6F=68=6E".IsHex('=');
+
+                Assert.That(result, Is.True);
+            }
+
+            [Test]
+            public void WhenDelimiterProvider_AndDoesNotHaveDelimiter_ThenReturnFalse()
+            {
+                var result = "4A=6F=68=6E".IsHex('-');
 
                 Assert.That(result, Is.False);
             }
