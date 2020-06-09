@@ -80,6 +80,18 @@ namespace ByteDev.Encoding.UnitTests.Serialization
 
                 Assert.Throws<InvalidCastException>(() => _sut.Deserialize<Customer>(base64));
             }
+
+            [Test]
+            public void WhenUsingHexEncoder_ThenReturnObject()
+            {
+                var sut = new Serializer(new HexEncoder('='));
+
+                var hex = sut.Serialize(_person);
+
+                var result = sut.Deserialize<Person>(hex);
+
+                Assert.That(result.Name, Is.EqualTo(_person.Name));
+            }
         }
 
         [Serializable]
