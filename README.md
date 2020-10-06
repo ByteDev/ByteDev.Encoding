@@ -22,12 +22,6 @@ Releases follow semantic versioning.
 
 Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.Encoding/blob/master/docs/RELEASE-NOTES.md).
 
-## Code
-
-The repo can be cloned from git bash:
-
-`git clone https://github.com/ByteDev/ByteDev.Encoding`
-
 ## Usage
 
 The main library classes include:
@@ -112,10 +106,10 @@ Person person = serializer.Deserialize<Person>(base64);
 
 ### EncoderFactory
 
-The `EncoderFactory` provides a convenient to create a type of encoder based on the `EncodingType`.
+The `EncoderFactory` provides a convenient way to create a type of encoder based on the `EncodingType`.
 
 ```csharp
 IEncoderFactory factory = new EncoderFactory();
 
-IEncoder encoder = factory.Create(EncodingType.Base64);
+IEncoder base64Encoder = factory.Create(EncodingType.Base64);
 ```
