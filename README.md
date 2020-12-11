@@ -25,22 +25,45 @@ Full details of the release notes can be viewed on [GitHub](https://github.com/B
 ## Usage
 
 The main library classes include:
+- Base32Encoder
 - Base64Encoder
 - HexEncoder
 - Serializer
 - EncoderFactory
 
 String extension methods:
+- IsBase32
 - IsBase64
 - IsHex
 
 Char extension methods:
-- IsBasae64
+- IsBase32
+- IsBase64
 - IsHex
+
+---
+
+### Base32Encoder
+
+`Base32Encoder` provides a way to encode to base32 strings and decode back again.
+
+```csharp
+IEncoder encoder = new Base32Encoder();
+
+string base32 = encoder.Encode("John");
+
+// base32 == "JJXWQ3Q="
+
+string text = encoder.Decode(base32);
+
+// text == "John"
+```
+
+---
 
 ### Base64Encoder
 
-`Base64Encoder` provides a way to encode to hexadecimal strings and decode back again.
+`Base64Encoder` provides a way to encode to base64 strings and decode back again.
 
 ```csharp
 IEncoder encoder = new Base64Encoder();
@@ -53,6 +76,8 @@ string text = encoder.Decode(base64);
 
 // text == "John"
 ```
+
+---
 
 ### HexEncoder
 
@@ -70,9 +95,11 @@ string text = encoder.Decode(hex);
 // text == "John"
 ```
 
+---
+
 ### Serializer
 
-The `Serializer` class provides a way to serialize/deserialize objects based on the provided `IEncoder` implementation (Base64 or Hex).
+The `Serializer` class provides a way to serialize/deserialize objects based on the provided `IEncoder` implementation (Base32, Base64 or Hex).
 
 ```csharp
 // Entity to serialize
@@ -103,6 +130,8 @@ string base64 = serializer.Serialize(person);
 // Deserialize
 Person person = serializer.Deserialize<Person>(base64);
 ```
+
+---
 
 ### EncoderFactory
 

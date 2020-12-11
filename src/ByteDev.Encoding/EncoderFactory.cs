@@ -1,4 +1,5 @@
 ﻿using System;
+using ByteDev.Encoding.Base32;
 using ByteDev.Encoding.Base64;
 using ByteDev.Encoding.Hex;
 
@@ -25,6 +26,9 @@ namespace ByteDev.Encoding
 
                 case EncodingType.Hex:
                     return new HexEncoder();
+
+                case EncodingType.Base32:
+                    return new Base32Encoder();
 
                 default:
                     throw new InvalidOperationException($"Unhandled {nameof(EncodingType)} value: '{encodingType}'.");

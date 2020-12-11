@@ -1,4 +1,5 @@
 ﻿using System;
+using ByteDev.Encoding.Base32;
 using ByteDev.Encoding.Base64;
 using ByteDev.Encoding.Hex;
 using ByteDev.Encoding.Serialization;
@@ -46,6 +47,16 @@ namespace ByteDev.Encoding.UnitTests.Serialization
 
                 Assert.That(result.IsHex('-'), Is.True);
             }
+
+            [Test]
+            public void WhenUsingBase32Encoder_ThenReturnHex()
+            {
+                var sut = new Serializer(new Base32Encoder());
+
+                var result = sut.Serialize(_person);
+
+                Assert.That(result.IsBase32(), Is.True);
+            }
         }
 
         [TestFixture]
@@ -89,6 +100,18 @@ namespace ByteDev.Encoding.UnitTests.Serialization
                 var hex = sut.Serialize(_person);
 
                 var result = sut.Deserialize<Person>(hex);
+
+                Assert.That(result.Name, Is.EqualTo(_person.Name));
+            }
+
+            [Test]
+            public void WhenUsingBase32Encoder_ThenReturnObject()
+            {
+                var sut = new Serializer(new Base32Encoder());
+
+                var base32 = sut.Serialize(_person);
+
+                var result = sut.Deserialize<Person>(base32);
 
                 Assert.That(result.Name, Is.EqualTo(_person.Name));
             }

@@ -13,6 +13,11 @@
         /// <summary>
         /// Hexadecimal.
         /// </summary>
-        Hex = 1
+        Hex = 1,
+
+        /// <summary>
+        /// Base32.
+        /// </summary>
+        Base32 = 2
     }
 }
