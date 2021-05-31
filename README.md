@@ -4,7 +4,7 @@
 
 # ByteDev.Encoding
 
-Library of encoding/decoding related functionality for Base64 and Hexadecimal.
+Library of encoding/decoding related functionality for Hexadecimal, Base64 and Base32.
 
 ## Installation
 
@@ -51,11 +51,12 @@ Char extension methods:
 IEncoder encoder = new Base32Encoder();
 
 string base32 = encoder.Encode("John");
-
 // base32 == "JJXWQ3Q="
 
-string text = encoder.Decode(base32);
+bool isBase32 = base32.IsBase32();
+// isBase32 == true
 
+string text = encoder.Decode(base32);
 // text == "John"
 ```
 
@@ -69,11 +70,12 @@ string text = encoder.Decode(base32);
 IEncoder encoder = new Base64Encoder();
 
 string base64 = encoder.Encode("John");
-
 // base64 == "Sm9obg=="
 
-string text = encoder.Decode(base64);
+bool isBase64 = base64.IsBase64();
+// isBase64 == true
 
+string text = encoder.Decode(base64);
 // text == "John"
 ```
 
@@ -87,11 +89,12 @@ string text = encoder.Decode(base64);
 IEncoder encoder = new HexEncoder('='); // optional delimiter arg
 
 string hex = encoder.Encode("John");
-
 // hex == "4A=6F=68=6E"
 
-string text = encoder.Decode(hex);
+bool isHex = hex.IsHex('=');
+// isHex == true
 
+string text = encoder.Decode(hex);
 // text == "John"
 ```
 

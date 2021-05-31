@@ -17,10 +17,16 @@ namespace ByteDev.Encoding.UnitTests.Hex
             }
         }
 
-        [Test]
-        public void WhenIsNotHexValue_ThenReturnFalse()
+        [TestCase('-')]
+        [TestCase('a')]
+        [TestCase('b')]
+        [TestCase('c')]
+        [TestCase('d')]
+        [TestCase('e')]
+        [TestCase('f')]
+        public void WhenIsNotHexValue_ThenReturnFalse(char sut)
         {
-            var result = '-'.IsHex();
+            var result = sut.IsHex();
 
             Assert.That(result, Is.False);
         }

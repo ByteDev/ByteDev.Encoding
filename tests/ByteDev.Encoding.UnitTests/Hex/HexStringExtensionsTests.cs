@@ -14,8 +14,6 @@ namespace ByteDev.Encoding.UnitTests.Hex
             [TestCase("F0")]
             [TestCase("F9")]
             [TestCase("F9A1")]
-            [TestCase("f9a1")]
-            [TestCase("f9A1")]
             public void WhenIsHex_ThenReturnTrue(string sut)
             {
                 var result = sut.IsHex();
@@ -26,13 +24,15 @@ namespace ByteDev.Encoding.UnitTests.Hex
             [TestCase(null)]
             [TestCase("")]
             [TestCase("A1G")]
+            [TestCase("f9a1")]
+            [TestCase("f9A1")]
             public void WhenIsNotHex_ThenReturnFalse(string sut)
             {
                 var result = sut.IsHex();
 
                 Assert.That(result, Is.False);
             }
-
+            
             [Test]
             public void WhenDelimiterProvider_AndHasDelimiter_ThenReturnTrue()
             {
