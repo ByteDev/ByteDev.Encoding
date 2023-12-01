@@ -1,4 +1,5 @@
-﻿using ByteDev.Encoding.Base64;
+﻿using System;
+using ByteDev.Encoding.Base64;
 using NUnit.Framework;
 
 namespace ByteDev.Encoding.UnitTests.Base64
@@ -61,6 +62,56 @@ namespace ByteDev.Encoding.UnitTests.Base64
                 var result = sut.IsBase64();
                 
                 Assert.That(result, Is.True);
+            }
+        }
+
+        [TestFixture]
+        public class GetBase64EndPadding
+        {
+            [Test]
+            public void WhenIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _ = (null as string).GetBase64EndPadding());
+            }
+
+            [Test]
+            public void WhenIsEmpty_ThenReturnEmpty()
+            {
+                var result = string.Empty.GetBase64EndPadding();
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenIsLengthOne_ThenReturnEmpty()
+            {
+                var result = "A".GetBase64EndPadding();
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenStringHasNoEndPadding_ThenReturnEmpty()
+            {
+                var result = "QUFB".GetBase64EndPadding(); // AAA
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenStringHasSingleEndPadding_ThenReturnSingleEquals()
+            {
+                var result = "QUE=".GetBase64EndPadding();  // AA
+
+                Assert.That(result, Is.EqualTo("="));
+            }
+
+            [Test]
+            public void WhenStringHasDoubleEndPadding_ThenReturnSingleEquals()
+            {
+                var result = "QQ==".GetBase64EndPadding();  // A
+
+                Assert.That(result, Is.EqualTo("=="));
             }
         }
     }
