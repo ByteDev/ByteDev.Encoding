@@ -114,5 +114,41 @@ namespace ByteDev.Encoding.UnitTests.Base64
                 Assert.That(result, Is.EqualTo("=="));
             }
         }
+
+        [TestFixture]
+        public class RemoveBase64EndPadding : Base64StringExtensionsTests
+        {
+            [Test]
+            public void WhenIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => _ = (null as string).RemoveBase64EndPadding());
+            }
+
+            [TestCase("")]
+            [TestCase("A")]
+            [TestCase("QUFB")]
+            public void WhenIsHasNoEndPadding_ThenReturnSameString(string source)
+            {
+                var result = source.RemoveBase64EndPadding();
+
+                Assert.That(result, Is.SameAs(source));
+            }
+
+            [Test]
+            public void WhenStringHasSingleEndPadding_ThenReturnWithoutPadding()
+            {
+                var result = "QUE=".RemoveBase64EndPadding();  // AA
+
+                Assert.That(result, Is.EqualTo("QUE"));
+            }
+
+            [Test]
+            public void WhenStringHasDoubleEndPadding_ThenReturnWithoutPadding()
+            {
+                var result = "QQ".RemoveBase64EndPadding();  // A
+
+                Assert.That(result, Is.EqualTo("QQ"));
+            }
+        }
     }
 }

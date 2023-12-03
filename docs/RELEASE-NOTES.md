@@ -1,5 +1,17 @@
 # Release Notes
 
+## 2.1.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Add `Base64StringExtensions.GetBase64EndPadding` method.
+- Add `Base64StringExtensions.RemoveBase64EndPadding` method.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.0.0 - 31 May 2021
 
 Breaking changes:

@@ -26,7 +26,8 @@ namespace ByteDev.Encoding.Base64
         }
 
         /// <summary>
-        /// Gets the base 64 end padding characters (if any) as a string.
+        /// Gets the base 64 end padding characters (if any) as a string. If no end padding exists
+        /// then empty string is returned.
         /// </summary>
         /// <param name="source">The string to perform this operation on.</param>
         /// <returns>Any base 64 end padding characters as a string.</returns>
@@ -50,6 +51,34 @@ namespace ByteDev.Encoding.Base64
             }
 
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Removes any end padding for a base 64 encoded string. If no padding exists the
+        /// same string is returned.
+        /// </summary>
+        /// <param name="source">The string to perform this operation on.</param>
+        /// <returns>String with any base 64 end padding characters removed.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static string RemoveBase64EndPadding(this string source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (source.Length >= 2)
+            {
+                if (source[source.Length - 1] == '=')
+                {
+                    if (source[source.Length - 2] == '=')
+                    {
+                        return source.Substring(0, source.Length - 2);
+                    }
+
+                    return source.Substring(0, source.Length - 1);
+                }
+            }
+
+            return source;
         }
     }
 }
