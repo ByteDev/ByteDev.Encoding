@@ -9,7 +9,7 @@ New features:
 - (None)
 
 Bug fixes / internal changes:
-- Add `README.md` to nuspec file.
+- Added `README.md` to nuspec file.
 
 ## 2.1.0 - 12 January 2024
 
