@@ -75,13 +75,26 @@ namespace ByteDev.Encoding.Base64
         }
 
         /// <summary>
-        /// Calculates the potential base64 size of content. 
+        /// Calculates the base64 size of content based on it's size in bytes. 
         /// </summary>
-        /// <param name="originalSizeInBytes">The original size of the content.</param>
+        /// <param name="originalSizeInBytes">The original size of the content in bytes.</param>
         /// <returns>The size of the content if encoded to base64.</returns>
         public static long CalcBase64EncodedSize(long originalSizeInBytes)
         {
             return 4 * (int)Math.Ceiling(originalSizeInBytes / 3.0);
+        }
+
+        /// <summary>
+        /// Calculates the original size in bytes of a base64 string.
+        /// </summary>
+        /// <param name="base64Str">Base64 string.</param>
+        /// <returns>The size in bytes of the original string.</returns>
+        public static long CalcOriginalSize(string base64Str)
+        {
+            if (base64Str == null)
+                return 0;
+
+            return base64Str.RemoveBase64EndPadding().Length * 3 / 4;
         }
     }
 }

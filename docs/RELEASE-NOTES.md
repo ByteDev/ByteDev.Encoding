@@ -6,8 +6,9 @@ Breaking changes:
 - (None)
 
 New features:
-- Add `Base64StringExtensions.GetBase64EndPadding` method.
-- Add `Base64StringExtensions.RemoveBase64EndPadding` method.
+- Added `Base64StringExtensions.GetBase64EndPadding` method.
+- Added `Base64StringExtensions.RemoveBase64EndPadding` method.
+- Added `Base64Encoder.CalcOriginalSize` method.
 
 Bug fixes / internal changes:
 - (None)
