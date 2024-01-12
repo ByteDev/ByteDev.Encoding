@@ -13,6 +13,7 @@
     <projectUrl>https://github.com/ByteDev/ByteDev.Encoding</projectUrl>
     <icon>images\icon.png</icon>
     <license type="file">LICENSE</license>
+    <readme>README.md</readme>
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
     </dependencies>
@@ -21,6 +22,7 @@
     <file src="..\src\ByteDev.Encoding\bin\Release\netstandard2.0\ByteDev.Encoding.dll" target="lib\netstandard2.0" />
     <file src="..\src\ByteDev.Encoding\bin\Release\netstandard2.0\ByteDev.Encoding.xml" target="lib\netstandard2.0" />
     <file src="..\images\icon.png" target="images\" />
-    <file src="..\LICENSE*" target="" />	
+    <file src="..\LICENSE*" target="" />
+    <file src="..\README.md" target="" />
   </files>
 </package>
