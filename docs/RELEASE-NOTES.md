@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2.1.1 - 12 January 2024
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Add `README.md` to nuspec file.
+
 ## 2.1.0 - 12 January 2024
 
 Breaking changes:
