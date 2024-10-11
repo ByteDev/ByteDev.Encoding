@@ -8,10 +8,10 @@ namespace ByteDev.Encoding.Base32
     public static class Base32StringExtensions
     {
         /// <summary>
-        /// Indicates if the string is potentially base32 encoded.
+        /// Indicates if the string is potentially base 32 encoded.
         /// </summary>
         /// <param name="source">The string to perform this operation on.</param>
-        /// <returns>True if string is base32 encoded; otherwise returns false.</returns>
+        /// <returns>True if string is base 32 encoded; otherwise returns false.</returns>
         public static bool IsBase32(this string source)
         {
             if (string.IsNullOrEmpty(source))

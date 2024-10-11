@@ -9,10 +9,10 @@ namespace ByteDev.Encoding.Base64
     public static class Base64StringExtensions
     {
         /// <summary>
-        /// Indicates if the string is potentially base64 encoded.
+        /// Indicates if the string is potentially base 64 encoded.
         /// </summary>
         /// <param name="source">The string to perform this operation on.</param>
-        /// <returns>True if string is base64 encoded; otherwise returns false.</returns>
+        /// <returns>True if string is base 64 encoded; otherwise returns false.</returns>
         public static bool IsBase64(this string source)
         {
             if (string.IsNullOrEmpty(source))

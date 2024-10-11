@@ -4,7 +4,7 @@ using System.Text;
 namespace ByteDev.Encoding.Base32
 {
     /// <summary>
-    /// Represents a base32 encoder/decoder.
+    /// Represents a base 32 encoder/decoder.
     /// </summary>
     /// <remarks>
     /// Modified from answer at: https://stackoverflow.com/questions/641361/base32-decoding
@@ -12,21 +12,21 @@ namespace ByteDev.Encoding.Base32
     public class Base32Encoder : IEncoder
     {
         /// <summary>
-        /// Encode a UTF8 encoded string to base32.
+        /// Encode a UTF8 encoded string to base 32.
         /// </summary>
         /// <param name="value">The string to encode.</param>
-        /// <returns>Base32 string.</returns>
+        /// <returns>Base 32 string.</returns>
         public string Encode(string value)
         {
             return Encode(value, new UTF8Encoding());
         }
 
         /// <summary>
-        /// Encode a string to base32.
+        /// Encode a string to base 32.
         /// </summary>
         /// <param name="value">The string to encode./</param>
         /// <param name="encoding">The encoding of <paramref name="value" />.</param>
-        /// <returns>Base32 string.</returns>
+        /// <returns>Base 32 string.</returns>
         public string Encode(string value, System.Text.Encoding encoding)
         {
             byte[] bytes = encoding.GetBytes(value);
@@ -35,10 +35,10 @@ namespace ByteDev.Encoding.Base32
         }
 
         /// <summary>
-        /// Encode an array of bytes to base32.
+        /// Encode an array of bytes to base 32.
         /// </summary>
         /// <param name="bytes">The byte array to encode.</param>
-        /// <returns>Base32 string.</returns>
+        /// <returns>Base 32 string.</returns>
         public string Encode(byte[] bytes)
         {
             if (bytes == null)
@@ -83,9 +83,9 @@ namespace ByteDev.Encoding.Base32
         }
 
         /// <summary>
-        /// Decodes a string from base32 to UTF-8
+        /// Decodes a string from base 32 to UTF-8
         /// </summary>
-        /// <param name="value">The base32 string to decode.</param>
+        /// <param name="value">The base 32 string to decode.</param>
         /// <returns>The decoded string.</returns>
         public string Decode(string value)
         {
@@ -93,9 +93,9 @@ namespace ByteDev.Encoding.Base32
         }
 
         /// <summary>
-        /// Decodes a string from base32 to <paramref name="encoding" />.
+        /// Decodes a string from base 32 to <paramref name="encoding" />.
         /// </summary>
-        /// <param name="value">The base32 string to decode.</param>
+        /// <param name="value">The base 32 string to decode.</param>
         /// <param name="encoding">The target encoding.</param>
         /// <returns>The decoded string.</returns>
         public string Decode(string value, System.Text.Encoding encoding)
@@ -106,9 +106,9 @@ namespace ByteDev.Encoding.Base32
         }
 
         /// <summary>
-        /// Decodes a string from base32 to byte array.
+        /// Decodes a string from base 32 to byte array.
         /// </summary>
-        /// <param name="value">The base32 string to decode.</param>
+        /// <param name="value">The base 32 string to decode.</param>
         /// <returns>The decoded string.</returns>
         public byte[] DecodeToBytes(string value)
         {
@@ -116,13 +116,13 @@ namespace ByteDev.Encoding.Base32
                 throw new ArgumentNullException(nameof(value));
 
             if (value == string.Empty)
-                return new byte[0];
+                return Array.Empty<byte>();
 
             value = value.TrimEnd(Base32CharacterSet.PaddingChar);
 
-            int byteCount = value.Length * 5 / 8; // this must be TRUNCATED
+            int byteCount = value.Length * 5 / 8; // this must be truncated
 
-            byte[] returnArray = new byte[byteCount];
+            var returnArray = new byte[byteCount];
 
             byte curByte = 0;
             byte bitsRemaining = 8;

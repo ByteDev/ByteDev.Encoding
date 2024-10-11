@@ -3,12 +3,12 @@
 namespace ByteDev.Encoding.Base64
 {
     /// <summary>
-    /// Represents the base64 character set.
+    /// Represents the base 64 character set.
     /// </summary>
     public static class Base64CharacterSet
     {
         /// <summary>
-        /// Valid base64 characters.
+        /// Valid base 64 characters.
         /// </summary>
         public static readonly HashSet<char> Base64Chars = new HashSet<char>
         {
@@ -20,7 +20,7 @@ namespace ByteDev.Encoding.Base64
         };
 
         /// <summary>
-        /// Valid base64 characters.
+        /// Valid base 64 characters.
         /// </summary>
         public static readonly string Base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     }
