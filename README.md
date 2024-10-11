@@ -4,7 +4,7 @@
 
 # ByteDev.Encoding
 
-Library of encoding/decoding related functionality for Hexadecimal, Base64 and Base32.
+Library of encoding/decoding related functionality for Hexadecimal (Base 16), Base 32 and Base 64.
 
 ## Installation
 
@@ -64,7 +64,7 @@ string text = encoder.Decode(base32);
 
 ### Base64Encoder
 
-`Base64Encoder` provides a way to encode to base64 strings and decode back again.
+`Base64Encoder` provides a way to encode to Base 64 strings and decode back again.
 
 ```csharp
 IEncoder encoder = new Base64Encoder();
@@ -83,7 +83,7 @@ string text = encoder.Decode(base64);
 
 ### HexEncoder
 
-`HexEncoder` provides a way to encode to hexadecimal strings and decode back again.
+`HexEncoder` provides a way to encode to Hexadecimal (Base 16) strings and decode back again.
 
 ```csharp
 IEncoder encoder = new HexEncoder('='); // optional delimiter arg
@@ -102,7 +102,7 @@ string text = encoder.Decode(hex);
 
 ### Serializer
 
-The `Serializer` class provides a way to serialize/deserialize objects based on the provided `IEncoder` implementation (Base32, Base64 or Hex).
+The `Serializer` class provides a way to serialize/deserialize objects based on the provided `IEncoder` implementation (Hexadecimal, Base 32 or Base 64).
 
 ```csharp
 // Entity to serialize

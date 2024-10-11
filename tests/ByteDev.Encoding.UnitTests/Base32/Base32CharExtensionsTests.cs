@@ -1,5 +1,4 @@
 ﻿using ByteDev.Encoding.Base32;
-using ByteDev.Encoding.Base64;
 using NUnit.Framework;
 
 namespace ByteDev.Encoding.UnitTests.Base32
@@ -40,9 +39,9 @@ namespace ByteDev.Encoding.UnitTests.Base32
         [TestCase('6')]
         [TestCase('7')]
         [TestCase('=')]
-        public void WhenIsBase64Value_ThenReturnTrue(char sut)
+        public void WhenIsBase32Value_ThenReturnTrue(char sut)
         {
-            var result = sut.IsBase64();
+            var result = sut.IsBase32();
 
             Assert.That(result, Is.True);
         }

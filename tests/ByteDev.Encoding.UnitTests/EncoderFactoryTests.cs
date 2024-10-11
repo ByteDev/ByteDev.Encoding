@@ -1,4 +1,5 @@
 ﻿using System;
+using ByteDev.Encoding.Base32;
 using ByteDev.Encoding.Base64;
 using ByteDev.Encoding.Hex;
 using NUnit.Framework;
@@ -14,6 +15,14 @@ namespace ByteDev.Encoding.UnitTests
         public void SetUp()
         {
             _sut = new EncoderFactory();
+        }
+
+        [Test]
+        public void WhenEncodingTypeIsBase32_ThenReturnEncoder()
+        {
+            var result = _sut.Create(EncodingType.Base32);
+
+            Assert.That(result, Is.TypeOf<Base32Encoder>());
         }
 
         [Test]
