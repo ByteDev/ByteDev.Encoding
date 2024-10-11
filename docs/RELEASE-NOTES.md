@@ -1,5 +1,17 @@
 # Release Notes
 
+## 2.2.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `Base85Encoder`.
+- Added `Base85CharacterSet`
+
+Bug fixes / internal changes:
+- (None)
+
 ## 2.1.1 - 12 January 2024
 
 Breaking changes:

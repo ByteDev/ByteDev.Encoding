@@ -2,53 +2,52 @@
 using ByteDev.Encoding.Base32;
 using NUnit.Framework;
 
-namespace ByteDev.Encoding.UnitTests.Base32
+namespace ByteDev.Encoding.UnitTests.Base32;
+
+[TestFixture]
+public class Base32EncoderTests
 {
     [TestFixture]
-    public class Base32EncoderTests
+    public class Encode
     {
-        [TestFixture]
-        public class Encode : Base32EncoderTests
+        [Test]
+        public void WhenStringIsNull_ThenThrowException()
         {
-            [Test]
-            public void WhenStringIsNull_ThenThrowException()
-            {
-                Assert.Throws<ArgumentNullException>(() => new Base32Encoder().Encode((string) null));
-            }
-
-            [TestCase("", "")]
-            [TestCase("A", "IE======")]
-            [TestCase("AB", "IFBA====")]
-            [TestCase("ABC", "IFBEG===")]
-            [TestCase("this is st", "ORUGS4ZANFZSA43U")]
-            public void WhenUtf8StringIsNotNull_ThenReturnEncoded(string text, string expected)
-            {
-                var result = new Base32Encoder().Encode(text);
-
-                Assert.That(result, Is.EqualTo(expected));
-            }
+            Assert.Throws<ArgumentNullException>(() => new Base32Encoder().Encode((string) null));
         }
 
-        [TestFixture]
-        public class Decode : Base32EncoderTests
+        [TestCase("", "")]
+        [TestCase("A", "IE======")]
+        [TestCase("AB", "IFBA====")]
+        [TestCase("ABC", "IFBEG===")]
+        [TestCase("this is st", "ORUGS4ZANFZSA43U")]
+        public void WhenUtf8StringIsNotNull_ThenReturnEncoded(string text, string expected)
         {
-            [Test]
-            public void WhenStringIsNull_ThenThrowException()
-            {
-                Assert.Throws<ArgumentNullException>(() => new Base32Encoder().Decode(null));
-            }
+            var result = new Base32Encoder().Encode(text);
 
-            [TestCase("", "")]
-            [TestCase("IE======", "A")]
-            [TestCase("IFBA====", "AB")]
-            [TestCase("IFBEG===", "ABC")]
-            [TestCase("ORUGS4ZANFZSA43U", "this is st")]
-            public void WithBase32_ThenReturnText(string base32, string expected)
-            {
-                var result = new Base32Encoder().Decode(base32);
+            Assert.That(result, Is.EqualTo(expected));
+        }
+    }
 
-                Assert.That(result, Is.EqualTo(expected));
-            }
+    [TestFixture]
+    public class Decode
+    {
+        [Test]
+        public void WhenStringIsNull_ThenThrowException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Base32Encoder().Decode(null));
+        }
+
+        [TestCase("", "")]
+        [TestCase("IE======", "A")]
+        [TestCase("IFBA====", "AB")]
+        [TestCase("IFBEG===", "ABC")]
+        [TestCase("ORUGS4ZANFZSA43U", "this is st")]
+        public void WithBase32_ThenReturnText(string base32, string expected)
+        {
+            var result = new Base32Encoder().Decode(base32);
+
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }
