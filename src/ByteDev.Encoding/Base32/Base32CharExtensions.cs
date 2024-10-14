@@ -6,10 +6,10 @@
     public static class Base32CharExtensions
     {
         /// <summary>
-        /// Indicates whether a character is a valid Base 32 character.
+        /// Indicates whether a character is a valid base 32 character.
         /// </summary>
         /// <param name="source">The char to perform this operation on.</param>
-        /// <returns>True if char is a valid Base 32 character; otherwise returns false.</returns>
+        /// <returns>True if char is a valid base 32 character; otherwise returns false.</returns>
         public static bool IsBase32(this char source)
         {
             return Base32CharacterSet.Base32Chars.Contains(source);

@@ -7,7 +7,8 @@ Breaking changes:
 
 New features:
 - Added `Base85Encoder`.
-- Added `Base85CharacterSet`
+- Added `Base85CharacterSet`.
+- Added `Base85CharExtensions.IsBase85` method.
 
 Bug fixes / internal changes:
 - (None)
@@ -55,8 +56,8 @@ Breaking changes:
 New features:
 - Added `Base32Encoder`.
 - Added `Base32CharacterSet`.
-- Added `Base32CharExtensions.IsBase32`.
-- Added `Base32StringExtensions.IsBase32`.
+- Added `Base32CharExtensions.IsBase32` method.
+- Added `Base32StringExtensions.IsBase32` method.
 
 Bug fixes / internal changes:
 - (None)
