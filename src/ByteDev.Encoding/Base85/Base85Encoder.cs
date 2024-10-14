@@ -127,14 +127,15 @@ namespace ByteDev.Encoding.Base85
 
                 foreach (char ch in value)
                 {
+                    if (!Base85CharacterSet.Base85Chars.Contains(ch))
+                    {
+                        throw new FormatException($"Value is not a valid base 85 encoding. Invalid character '{ch}'.");
+                    }
+
                     if (ch == 'z' && count == 0)
                     {
                         // Handle 'z' block specially
                         WriteDecodeValue(stream, val, 0);
-                    }
-                    else if (ch < Base85CharacterSet.FirstCharacter || ch > Base85CharacterSet.LastCharacter)
-                    {
-                        throw new FormatException($"Value is not a valid base 85 encoding. Invalid character '{ch}'.");
                     }
                     else
                     {

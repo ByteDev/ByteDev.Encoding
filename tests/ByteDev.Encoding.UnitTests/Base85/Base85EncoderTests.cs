@@ -54,6 +54,12 @@ public class Base85EncoderTests
             Assert.Throws<ArgumentNullException>(() => _sut.Decode(null));
         }
 
+        [Test]
+        public void WhenContainsInvalidBase85Char_ThenThrowException()
+        {
+            Assert.Throws<FormatException>(() => _sut.Decode("x"));
+        }
+
         [TestCase("", "")]
         [TestCase("0E", "0")]
         [TestCase(@"8oJB\+B*,kFD(", "John Smith")]
