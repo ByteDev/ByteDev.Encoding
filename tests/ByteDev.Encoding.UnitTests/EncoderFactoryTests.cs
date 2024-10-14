@@ -1,50 +1,58 @@
 ﻿using System;
 using ByteDev.Encoding.Base32;
 using ByteDev.Encoding.Base64;
+using ByteDev.Encoding.Base85;
 using ByteDev.Encoding.Hex;
 using NUnit.Framework;
 
-namespace ByteDev.Encoding.UnitTests
+namespace ByteDev.Encoding.UnitTests;
+
+[TestFixture]
+public class EncoderFactoryTests
 {
-    [TestFixture]
-    public class EncoderFactoryTests
+    private EncoderFactory _sut;
+
+    [SetUp]
+    public void SetUp()
     {
-        private EncoderFactory _sut;
+        _sut = new EncoderFactory();
+    }
 
-        [SetUp]
-        public void SetUp()
-        {
-            _sut = new EncoderFactory();
-        }
+    [Test]
+    public void WhenEncodingTypeIsBase64_ThenReturnEncoder()
+    {
+        var result = _sut.Create(EncodingType.Base64);
 
-        [Test]
-        public void WhenEncodingTypeIsBase32_ThenReturnEncoder()
-        {
-            var result = _sut.Create(EncodingType.Base32);
+        Assert.That(result, Is.TypeOf<Base64Encoder>());
+    }
 
-            Assert.That(result, Is.TypeOf<Base32Encoder>());
-        }
+    [Test]
+    public void WhenEncodingTypeIsHex_ThenReturnEncoder()
+    {
+        var result = _sut.Create(EncodingType.Hex);
 
-        [Test]
-        public void WhenEncodingTypeIsBase64_ThenReturnEncoder()
-        {
-            var result = _sut.Create(EncodingType.Base64);
+        Assert.That(result, Is.TypeOf<HexEncoder>());
+    }
 
-            Assert.That(result, Is.TypeOf<Base64Encoder>());
-        }
+    [Test]
+    public void WhenEncodingTypeIsBase32_ThenReturnEncoder()
+    {
+        var result = _sut.Create(EncodingType.Base32);
 
-        [Test]
-        public void WhenEncodingTypeIsHex_ThenReturnEncoder()
-        {
-            var result = _sut.Create(EncodingType.Hex);
+        Assert.That(result, Is.TypeOf<Base32Encoder>());
+    }
 
-            Assert.That(result, Is.TypeOf<HexEncoder>());
-        }
+    [Test]
+    public void WhenEncodingTypeIsBase85_ThenReturnEncoder()
+    {
+        var result = _sut.Create(EncodingType.Base85);
 
-        [Test]
-        public void WhenEncodingTypeIsUnhandled_ThenThrowException()
-        {
-            Assert.Throws<InvalidOperationException>(() => _sut.Create((EncodingType)999));
-        }
+        Assert.That(result, Is.TypeOf<Base85Encoder>());
+    }
+
+    [Test]
+    public void WhenEncodingTypeIsUnhandled_ThenThrowException()
+    {
+        Assert.Throws<InvalidOperationException>(() => _sut.Create((EncodingType)999));
     }
 }

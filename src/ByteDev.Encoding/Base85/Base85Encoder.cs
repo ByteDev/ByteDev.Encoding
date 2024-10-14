@@ -163,27 +163,30 @@ namespace ByteDev.Encoding.Base85
                     }
                 }
 
-                if (count <= 1)
-                    throw new FormatException("Value is not a valid base 85 encoding. The final block must contain more than one character.");
+                // if (count <= 1)
+                //    throw new FormatException("Value is not a valid base 85 encoding. The final block must contain more than one character.");
 
-                // Decode any remaining characters
-                for (var padding = count; padding < 5; padding++)
+                if (count > 0)
                 {
-                    try
+                    // Decode any remaining characters
+                    for (var padding = count; padding < 5; padding++)
                     {
-                        checked
+                        try
                         {
-                            val += 84 * PowersOf85[padding];
+                            checked
+                            {
+                                val += 84 * PowersOf85[padding];
+                            }
+                        }
+                        catch (OverflowException ex)
+                        {
+                            throw new FormatException("Value is not a valid base 85 encoding. Current group of chars decodes to a value greater than UInt32.MaxValue.", ex);
                         }
                     }
-                    catch (OverflowException ex)
-                    {
-                        throw new FormatException("Value is not a valid base 85 encoding. Current group of chars decodes to a value greater than UInt32.MaxValue.", ex);
-                    }
+
+                    WriteDecodeValue(stream, val, 5 - count);
                 }
-
-                WriteDecodeValue(stream, val, 5 - count);
-
+                
                 return stream.ToArray();
             }
         }

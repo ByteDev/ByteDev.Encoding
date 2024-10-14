@@ -1,74 +1,66 @@
 ﻿using ByteDev.Encoding.Base32;
 using NUnit.Framework;
 
-namespace ByteDev.Encoding.UnitTests.Base32
+namespace ByteDev.Encoding.UnitTests.Base32;
+
+[TestFixture]
+public class Base32StringExtensionsTests
 {
     [TestFixture]
-    public class Base32StringExtensionsTests
+    public class IsBase32
     {
-        [TestFixture]
-        public class IsBase32 : Base32StringExtensionsTests
+        [TestCase(null)]
+        [TestCase("")]
+        public void WhenIsNullOrEmpty_ThenReturnFalse(string sut)
         {
-            [Test]
-            public void WhenIsNull_ThenReturnFalse()
-            {
-                var result = Base32StringExtensions.IsBase32(null);
+            var result = sut.IsBase32();
 
-                Assert.That(result, Is.False);
-            }
+            Assert.That(result, Is.False);
+        }
 
-            [Test]
-            public void WhenIsEmpty_ThenReturnFalse()
-            {
-                var result = string.Empty.IsBase32();
+        [TestCase("IFBEa===")]
+        [TestCase("IFBE1===")]
+        [TestCase("IFBE8===")]
+        [TestCase("IFBE9===")]
+        [TestCase("IFBE0===")]
+        [TestCase("IFBE-===")]
+        public void WhenContainsNonBase32Char_ThenReturnFalse(string sut)
+        {
+            var result = sut.IsBase32();
 
-                Assert.That(result, Is.False);
-            }
+            Assert.That(result, Is.False);
+        }
 
-            [TestCase("IFBEa===")]
-            [TestCase("IFBE1===")]
-            [TestCase("IFBE8===")]
-            [TestCase("IFBE9===")]
-            [TestCase("IFBE0===")]
-            [TestCase("IFBE-===")]
-            public void WhenContainsNonBase32Char_ThenReturnFalse(string sut)
-            {
-                var result = sut.IsBase32();
+        [TestCase("IFBE===")]
+        [TestCase("IFBEGA===")]
+        public void WhenLengthIsNotMultipleOfEight_ThenReturnFalse(string sut)
+        {
+            var result = sut.IsBase32();
 
-                Assert.That(result, Is.False);
-            }
+            Assert.That(result, Is.False);
+        }
 
-            [TestCase("IFBE===")]
-            [TestCase("IFBEGA===")]
-            public void WhenLengthIsNotMultipleOfEight_ThenReturnFalse(string sut)
-            {
-                var result = sut.IsBase32();
+        [Test]
+        public void WhenContainsMoreThanSixEqualsSuffix_ThenReturnFalse()
+        {
+            const string notBase32 = "I=======";
 
-                Assert.That(result, Is.False);
-            }
+            var result = notBase32.IsBase32();
 
-            [Test]
-            public void WhenContainsMoreThanSixEqualsSuffix_ThenReturnFalse()
-            {
-                const string notBase32 = "I=======";
+            Assert.That(result, Is.False);
+        }
 
-                var result = notBase32.IsBase32();
-
-                Assert.That(result, Is.False);
-            }
-
-            [TestCase("ORUGS4ZANFZSA43U")]
-            [TestCase("ORUGS4ZA")]
-            [TestCase("ORUGS4Z=")]
-            [TestCase("ORUGS===")]
-            [TestCase("ORUG====")]
-            [TestCase("OR======")]
-            public void WhenIsBase32Encoded_ThenReturnTrue(string sut)
-            {
-                var result = sut.IsBase32();
+        [TestCase("ORUGS4ZANFZSA43U")]
+        [TestCase("ORUGS4ZA")]
+        [TestCase("ORUGS4Z=")]
+        [TestCase("ORUGS===")]
+        [TestCase("ORUG====")]
+        [TestCase("OR======")]
+        public void WhenIsBase32Encoded_ThenReturnTrue(string sut)
+        {
+            var result = sut.IsBase32();
                 
-                Assert.That(result, Is.True);
-            }
+            Assert.That(result, Is.True);
         }
     }
 }

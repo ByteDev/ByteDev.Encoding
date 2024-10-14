@@ -6,9 +6,9 @@ namespace ByteDev.Encoding.Base85
     /// Represents the base 85 character set.
     /// </summary>
     public class Base85CharacterSet
-    { 
+    {
         /// <summary>
-        /// Valid base 85 characters.
+        /// Valid base 85 characters (including 'z').
         /// </summary>
         public static readonly HashSet<char> Base85Chars = new HashSet<char>
         {
@@ -18,13 +18,15 @@ namespace ByteDev.Encoding.Base85
             ':', ';', '<', '=', '>', '?', '@', 
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
             '[', '\\', ']', '^', '_', '`', 
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u'
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            // 'z' is used to represent a a block (4 char) of NUL (\0) chars
+            'z'
         };
 
         /// <summary>
-        /// Valid base 85 characters.
+        /// Valid base 85 characters (including 'z').
         /// </summary>
-        public static readonly string Base85 = @"!""#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstu";
+        public static readonly string Base85 = @"!""#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuz";
 
         internal const char FirstCharacter = '!'; 
         internal const char LastCharacter = 'u';

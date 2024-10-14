@@ -11,13 +11,18 @@
         Base64 = 0,
 
         /// <summary>
-        /// Hexadecimal.
+        /// Hexadecimal (AKA Base 16).
         /// </summary>
         Hex = 1,
 
         /// <summary>
-        /// Base32.
+        /// Base 32.
         /// </summary>
-        Base32 = 2
+        Base32 = 2,
+
+        /// <summary>
+        /// Base 85 (AKA ASCII85).
+        /// </summary>
+        Base85 = 3
     }
 }

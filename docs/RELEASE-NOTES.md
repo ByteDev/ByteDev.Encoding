@@ -9,6 +9,7 @@ New features:
 - Added `Base85Encoder`.
 - Added `Base85CharacterSet`.
 - Added `Base85CharExtensions.IsBase85` method.
+- Added `Base85StringExtensions.IsBase85` method.
 
 Bug fixes / internal changes:
 - (None)

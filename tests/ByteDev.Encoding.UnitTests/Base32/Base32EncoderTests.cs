@@ -43,7 +43,7 @@ public class Base32EncoderTests
         [TestCase("IFBA====", "AB")]
         [TestCase("IFBEG===", "ABC")]
         [TestCase("ORUGS4ZANFZSA43U", "this is st")]
-        public void WithBase32_ThenReturnText(string base32, string expected)
+        public void WhenBase32String_ThenReturnDecodedText(string base32, string expected)
         {
             var result = new Base32Encoder().Decode(base32);
 
